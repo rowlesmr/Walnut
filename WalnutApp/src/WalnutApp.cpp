@@ -3,16 +3,40 @@
 
 #include "Walnut/Image.h"
 
+#include "implot.h"
+
 class ExampleLayer : public Walnut::Layer
 {
 public:
-	virtual void OnUIRender() override
+	void OnUIRender() override
 	{
 		ImGui::Begin("Hello");
-		ImGui::Button("Button");
+		ImGui::Button("Button1");
+		ImGui::End();
+	}
+};
+
+
+class PlotLayer : public Walnut::Layer {
+public:
+	void OnUIRender() override {
+		ImGui::Begin("Hello");
+		ImGui::Button("Button2");
 		ImGui::End();
 
 		ImGui::ShowDemoWindow();
+	}
+};
+
+
+
+class AnalysisLayer : public Walnut::Layer {
+public:
+	void OnUIRender() override {
+		ImGui::Begin("Hello2");
+		ImGui::Button("Button2");
+		ImGui::End();
+
 	}
 };
 
@@ -22,7 +46,10 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 	spec.Name = "Walnut Example";
 
 	Walnut::Application* app = new Walnut::Application(spec);
+	app->PushLayer<AnalysisLayer>();
+	app->PushLayer<PlotLayer>();
 	app->PushLayer<ExampleLayer>();
+
 	app->SetMenubarCallback([app]()
 	{
 		if (ImGui::BeginMenu("File"))
