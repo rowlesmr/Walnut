@@ -3,7 +3,7 @@
 
 #include "Walnut/Image.h"
 
-#include "implot.h"
+
 
 class ExampleLayer : public Walnut::Layer
 {
@@ -12,6 +12,7 @@ public:
 	{
 		ImGui::Begin("Hello");
 		ImGui::Button("Button1");
+		ImGui::ShowDemoWindow();
 		ImGui::End();
 	}
 };
@@ -20,11 +21,7 @@ public:
 class PlotLayer : public Walnut::Layer {
 public:
 	void OnUIRender() override {
-		ImGui::Begin("Hello");
-		ImGui::Button("Button2");
-		ImGui::End();
-
-		ImGui::ShowDemoWindow();
+		ImPlot::ShowDemoWindow();
 	}
 };
 
